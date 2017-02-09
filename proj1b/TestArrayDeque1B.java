@@ -53,14 +53,19 @@ public class TestArrayDeque1B {
     public void testRemoveLast(){
         StudentArrayDeque<Integer> student = new StudentArrayDeque<>();
         ArrayDequeSolution<Integer> solution = new ArrayDequeSolution<>();
+        OperationSequence fs = new OperationSequence();
         Random rn = new Random();
         for(int i =0;i<10;i++){
-            int rnd = rn.nextInt();
-            student.addFirst(rnd);
-            solution.addFirst(rnd);
+            //int rnd = rn.nextInt();
+            student.addLast(i);//instead of "i" i used "rn" for first time, "i" is easier to look at
+            solution.addLast(i);
         }
+
         for(int i = 0; i < 10; i++){
-            assertEquals(student.removeLast(),solution.removeLast());
+            Integer last = student.removeLast();
+            DequeOperation aa = new DequeOperation("removeLast", last);
+            fs.addOperation(aa);
+            assertEquals(fs.toString(), solution.removeLast(), last);
         }
 
     }
