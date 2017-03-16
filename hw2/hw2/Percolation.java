@@ -37,21 +37,15 @@ public class Percolation {
             sites.union(BOTTOM, rcto1D(row, col));
         }
         else{
-             if ((row <= n-2) && (col <= n-2)){
-                open(row, col);
-                if (col == 0){
-                    if (isFull(row+1,col)) sites.union(rcto1D(row,col), rcto1D(row+1,col));
-                    if (isFull(row-1,col)) sites.union(rcto1D(row,col), rcto1D(row-1,col));
-                    if (isFull(row,col+1)) sites.union(rcto1D(row,col), rcto1D(row,col+1));
+             if (col < n-1){ // a sta ako bi umjesto row ispod pisao TOP pa da se unija izvrsi sa TOP a ne sa susjednim redom npr. ?
+                 if (sites.connected(rcto1D(row,col+1), rcto1D(row,col))) sites.union(rcto1D(row,col), rcto1D(row,col+1));
+                 if (isFull(row+1,col)) sites.union(rcto1D(row,col), rcto1D(row+1,col));
+                 if (isFull(row-1,col)) sites.union(rcto1D(row,col), rcto1D(row-1,col));
+             }
+              if(col > 0){
+                  if (isFull(row,col-1)) sites.union(rcto1D(row,col), rcto1D(row,col-1));
 
-                }
-                else{
-                    if (isFull(row,col-1)) sites.union(rcto1D(row,col), rcto1D(row,col-1));
-                    if (isFull(row+1,col)) sites.union(rcto1D(row,col), rcto1D(row+1,col));
-                    if (isFull(row-1,col)) sites.union(rcto1D(row,col), rcto1D(row-1,col));
-
-                }
-            }
+              }
         }
         openSitesNum +=1;
     }
