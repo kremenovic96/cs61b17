@@ -41,7 +41,7 @@ public class Percolation {
 
         }
         else{
-             if (col < n-1){ // a sta ako bi umjesto row ispod pisao TOP pa da se unija izvrsi sa TOP a ne sa susjednim redom npr. ?
+             if (col < n-1){ 
                  if (isOpen(row,col+1)) sites.union(rcto1D(row,col), rcto1D(row,col+1));
                  if (isOpen(row+1,col)) sites.union(rcto1D(row,col), rcto1D(row+1,col));
                  if (isOpen(row-1,col)) sites.union(rcto1D(row,col), rcto1D(row-1,col));
